@@ -1,23 +1,26 @@
 const socket = io();
-// console.log(socket);
 
-const input = document.querySelector("#input");
-const btn = document.querySelector("#btn");
 const list = document.querySelector(`#chatList`);
+const messageInput = document.querySelector(`#message-input`);
+const roomInput = document.querySelector(`#room-input`);
+const sendMessage = document.querySelector(`#send-message`);
+const joinRoom = document.querySelector(`#join-room`);
 
-console.log(socket);
+sendMessage.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  const message = messageInput.value;
+  socket.emit(`message`, message);
+  messageInput.value = ``;
+});
 
-btn.addEventListener(`click`, (e) => {
-  const inputValue = input.value;
-  socket.emit(`message`, inputValue);
-  //   console.log(inputValue);
+joinRoom.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  const room = roomInput.value;
 });
 
 socket.on(`user-message`, (message) => {
-  console.log(message);
-//   const p = document.createElement("li");
-//   console.log(list);
-const li = document.createElement("li");
-li.innerText = message;
-list.appendChild(li);
+  const li = document.createElement("li");
+  li.classList.add(`chat`);
+  li.innerText = message;
+  list.appendChild(li);
 });

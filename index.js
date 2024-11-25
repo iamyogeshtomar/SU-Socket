@@ -17,8 +17,12 @@ app.get(`/`, (req, res) => {
 // As soon as the connection estabalishes, execute the cb function
 io.on("connection", (socket) => {
   socket.on(`message`, (message) => {
-    console.log(socket);
     io.emit(`user-message`, message);
+  });
+
+  socket.on(`showId`, (newId) => {
+    socket.id = newId;
+    console.log(`Id for current socket is ${socket.id}`);
   });
 });
 

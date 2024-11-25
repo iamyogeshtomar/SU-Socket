@@ -4,12 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Application Socket</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <h1>Chat Application</h1>
+    <!-- Chat box -->
+    <div id="chatbox">
+      <ul id="chatList"></ul>
+    </div>
 
-    <input type="text" id="input" />
-    <button id="btn">Send</button>
+    <div id="input-section">
+      <form class="single-input">
+        <input
+          type="text"
+          class="input-field"
+          id="message-input"
+          placeholder="Enter message"
+        />
+        <button class="submit-button" id="send-message" type="submit">
+          Send
+        </button>
+      </form>
+      <form class="single-input">
+        <input
+          type="text"
+          class="input-field"
+          id="room-input"
+          placeholder="Enter Room ID"
+        />
+        <button class="submit-button" id="join-room" type="submit">
+          Join Room
+        </button>
+      </form>
+    </div>
 
     <ul id="chatList"></ul>
     <script src="/socket.io/socket.io.js"></script>
